@@ -1,0 +1,2233 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ObservabilityStack alpha matches snapshot 1`] = `
+{
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`ObservabilityStack beta matches snapshot 1`] = `
+{
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`ObservabilityStack gamma matches snapshot 1`] = `
+{
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`ObservabilityStack prod matches snapshot 1`] = `
+{
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`RecommenderStack alpha matches snapshot 1`] = `
+{
+  "Outputs": {
+    "ApiUrl": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "RecommenderApi6AE88B5F",
+            },
+            ".execute-api.us-east-1.",
+            {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            {
+              "Ref": "RecommenderApiDeploymentStagealpha4DE6C3A3",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "RecommenderApiEndpointBFDF23FC": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "RecommenderApi6AE88B5F",
+            },
+            ".execute-api.us-east-1.",
+            {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            {
+              "Ref": "RecommenderApiDeploymentStagealpha4DE6C3A3",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+  },
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "RecommenderApi6AE88B5F": {
+      "Properties": {
+        "Name": "version-recommender-api-alpha",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "RecommenderApiAccount281FD15C": {
+      "DeletionPolicy": "Retain",
+      "DependsOn": [
+        "RecommenderApi6AE88B5F",
+      ],
+      "Properties": {
+        "CloudWatchRoleArn": {
+          "Fn::GetAtt": [
+            "RecommenderApiCloudWatchRole00A9A549",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "RecommenderApiCloudWatchRole00A9A549": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "RecommenderApiDeploymentB8B6B6F3b3d163bef29a689953374170ac702990": {
+      "DependsOn": [
+        "RecommenderApihealthGET23F671BD",
+        "RecommenderApihealth375F60B7",
+        "RecommenderApirecommendmodelNamePOST065BECC2",
+        "RecommenderApirecommendmodelName91952B36",
+        "RecommenderApirecommend32EF5AF5",
+      ],
+      "Metadata": {
+        "aws:cdk:do-not-refactor": true,
+      },
+      "Properties": {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "RecommenderApiDeploymentStagealpha4DE6C3A3": {
+      "DependsOn": [
+        "RecommenderApiAccount281FD15C",
+      ],
+      "Properties": {
+        "DeploymentId": {
+          "Ref": "RecommenderApiDeploymentB8B6B6F3b3d163bef29a689953374170ac702990",
+        },
+        "MethodSettings": [
+          {
+            "DataTraceEnabled": false,
+            "HttpMethod": "*",
+            "ResourcePath": "/*",
+            "ThrottlingBurstLimit": 200,
+            "ThrottlingRateLimit": 100,
+          },
+        ],
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+        "StageName": "alpha",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "RecommenderApihealth375F60B7": {
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "RecommenderApi6AE88B5F",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "health",
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RecommenderApihealthGET23F671BD": {
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "GET",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "RecommenderHandler490413E9",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RecommenderApihealth375F60B7",
+        },
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RecommenderApihealthGETApiPermissionTestRecommenderStackalphaRecommenderApi1C85E747GEThealthA1DB86D1": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "RecommenderHandler490413E9",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Ref": "RecommenderApi6AE88B5F",
+              },
+              "/",
+              {
+                "Ref": "RecommenderApiDeploymentStagealpha4DE6C3A3",
+              },
+              "/GET/health",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RecommenderApihealthGETApiPermissionTestTestRecommenderStackalphaRecommenderApi1C85E747GEThealth2C02A934": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "RecommenderHandler490413E9",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Ref": "RecommenderApi6AE88B5F",
+              },
+              "/test-invoke-stage/GET/health",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RecommenderApirecommend32EF5AF5": {
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "RecommenderApi6AE88B5F",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "recommend",
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RecommenderApirecommendmodelName91952B36": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "RecommenderApirecommend32EF5AF5",
+        },
+        "PathPart": "{modelName}",
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RecommenderApirecommendmodelNamePOST065BECC2": {
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "RecommenderHandler490413E9",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RecommenderApirecommendmodelName91952B36",
+        },
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RecommenderApirecommendmodelNamePOSTApiPermissionTestRecommenderStackalphaRecommenderApi1C85E747POSTrecommendmodelName2B22FA40": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "RecommenderHandler490413E9",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Ref": "RecommenderApi6AE88B5F",
+              },
+              "/",
+              {
+                "Ref": "RecommenderApiDeploymentStagealpha4DE6C3A3",
+              },
+              "/POST/recommend/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RecommenderApirecommendmodelNamePOSTApiPermissionTestTestRecommenderStackalphaRecommenderApi1C85E747POSTrecommendmodelName0F5807AE": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "RecommenderHandler490413E9",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:123456789012:",
+              {
+                "Ref": "RecommenderApi6AE88B5F",
+              },
+              "/test-invoke-stage/POST/recommend/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RecommenderHandler490413E9": {
+      "DependsOn": [
+        "RecommenderHandlerServiceRoleDefaultPolicyE85BFEBB",
+        "RecommenderHandlerServiceRoleF222A799",
+      ],
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "f9a900503515a6345eac59b55cb054458b3e2cfacb15bbc4eedd6cee4f27153e.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "AMS_ENDPOINT_URL": "https://pi5ywcu3ub.execute-api.us-east-1.amazonaws.com/alpha",
+            "CACHE_MAX_SIZE": "64",
+            "CACHE_TTL_SECONDS": "60",
+            "LAMBDA_PACKAGE_VERSION": "dev",
+            "LOG_LEVEL": "DEBUG",
+            "POWERTOOLS_SERVICE_NAME": "version-recommender",
+            "STAGE": "alpha",
+          },
+        },
+        "FunctionName": "version-recommender-handler-alpha",
+        "Handler": "handler.lambda_handler",
+        "MemorySize": 256,
+        "Role": {
+          "Fn::GetAtt": [
+            "RecommenderHandlerServiceRoleF222A799",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.11",
+        "Timeout": 10,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "RecommenderHandlerServiceRoleDefaultPolicyE85BFEBB": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "RecommenderHandlerServiceRoleDefaultPolicyE85BFEBB",
+        "Roles": [
+          {
+            "Ref": "RecommenderHandlerServiceRoleF222A799",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "RecommenderHandlerServiceRoleF222A799": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`RecommenderStack beta matches snapshot 1`] = `
+{
+  "Outputs": {
+    "ApiUrl": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "RecommenderApi6AE88B5F",
+            },
+            ".execute-api.us-east-1.",
+            {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            {
+              "Ref": "RecommenderApiDeploymentStagebeta7C19710B",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "RecommenderApiEndpointBFDF23FC": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "RecommenderApi6AE88B5F",
+            },
+            ".execute-api.us-east-1.",
+            {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            {
+              "Ref": "RecommenderApiDeploymentStagebeta7C19710B",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+  },
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "RecommenderApi6AE88B5F": {
+      "Properties": {
+        "Name": "version-recommender-api-beta",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "RecommenderApiAccount281FD15C": {
+      "DeletionPolicy": "Retain",
+      "DependsOn": [
+        "RecommenderApi6AE88B5F",
+      ],
+      "Properties": {
+        "CloudWatchRoleArn": {
+          "Fn::GetAtt": [
+            "RecommenderApiCloudWatchRole00A9A549",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "RecommenderApiCloudWatchRole00A9A549": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "RecommenderApiDeploymentB8B6B6F3c542b69d46ecfff0b7fa276d490aea52": {
+      "DependsOn": [
+        "RecommenderApihealthGET23F671BD",
+        "RecommenderApihealth375F60B7",
+        "RecommenderApirecommendmodelNamePOST065BECC2",
+        "RecommenderApirecommendmodelName91952B36",
+        "RecommenderApirecommend32EF5AF5",
+      ],
+      "Metadata": {
+        "aws:cdk:do-not-refactor": true,
+      },
+      "Properties": {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "RecommenderApiDeploymentStagebeta7C19710B": {
+      "DependsOn": [
+        "RecommenderApiAccount281FD15C",
+      ],
+      "Properties": {
+        "DeploymentId": {
+          "Ref": "RecommenderApiDeploymentB8B6B6F3c542b69d46ecfff0b7fa276d490aea52",
+        },
+        "MethodSettings": [
+          {
+            "DataTraceEnabled": false,
+            "HttpMethod": "*",
+            "ResourcePath": "/*",
+            "ThrottlingBurstLimit": 200,
+            "ThrottlingRateLimit": 100,
+          },
+        ],
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+        "StageName": "beta",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "RecommenderApihealth375F60B7": {
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "RecommenderApi6AE88B5F",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "health",
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RecommenderApihealthGET23F671BD": {
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "GET",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "RecommenderHandler490413E9",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RecommenderApihealth375F60B7",
+        },
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RecommenderApihealthGETApiPermissionTestRecommenderStackbetaRecommenderApi0A9420DCGEThealthB0EC1B8A": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "RecommenderHandler490413E9",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:234567890123:",
+              {
+                "Ref": "RecommenderApi6AE88B5F",
+              },
+              "/",
+              {
+                "Ref": "RecommenderApiDeploymentStagebeta7C19710B",
+              },
+              "/GET/health",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RecommenderApihealthGETApiPermissionTestTestRecommenderStackbetaRecommenderApi0A9420DCGEThealthC6C3163B": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "RecommenderHandler490413E9",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:234567890123:",
+              {
+                "Ref": "RecommenderApi6AE88B5F",
+              },
+              "/test-invoke-stage/GET/health",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RecommenderApirecommend32EF5AF5": {
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "RecommenderApi6AE88B5F",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "recommend",
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RecommenderApirecommendmodelName91952B36": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "RecommenderApirecommend32EF5AF5",
+        },
+        "PathPart": "{modelName}",
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RecommenderApirecommendmodelNamePOST065BECC2": {
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "RecommenderHandler490413E9",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RecommenderApirecommendmodelName91952B36",
+        },
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RecommenderApirecommendmodelNamePOSTApiPermissionTestRecommenderStackbetaRecommenderApi0A9420DCPOSTrecommendmodelName63E7ABB5": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "RecommenderHandler490413E9",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:234567890123:",
+              {
+                "Ref": "RecommenderApi6AE88B5F",
+              },
+              "/",
+              {
+                "Ref": "RecommenderApiDeploymentStagebeta7C19710B",
+              },
+              "/POST/recommend/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RecommenderApirecommendmodelNamePOSTApiPermissionTestTestRecommenderStackbetaRecommenderApi0A9420DCPOSTrecommendmodelName12930206": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "RecommenderHandler490413E9",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:234567890123:",
+              {
+                "Ref": "RecommenderApi6AE88B5F",
+              },
+              "/test-invoke-stage/POST/recommend/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RecommenderHandler490413E9": {
+      "DependsOn": [
+        "RecommenderHandlerServiceRoleDefaultPolicyE85BFEBB",
+        "RecommenderHandlerServiceRoleF222A799",
+      ],
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-234567890123-us-east-1",
+          "S3Key": "f9a900503515a6345eac59b55cb054458b3e2cfacb15bbc4eedd6cee4f27153e.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "AMS_ENDPOINT_URL": "https://beta-ams-placeholder.execute-api.us-east-1.amazonaws.com/beta",
+            "CACHE_MAX_SIZE": "128",
+            "CACHE_TTL_SECONDS": "60",
+            "LAMBDA_PACKAGE_VERSION": "dev",
+            "LOG_LEVEL": "DEBUG",
+            "POWERTOOLS_SERVICE_NAME": "version-recommender",
+            "STAGE": "beta",
+          },
+        },
+        "FunctionName": "version-recommender-handler-beta",
+        "Handler": "handler.lambda_handler",
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "RecommenderHandlerServiceRoleF222A799",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.11",
+        "Timeout": 10,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "RecommenderHandlerServiceRoleDefaultPolicyE85BFEBB": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "RecommenderHandlerServiceRoleDefaultPolicyE85BFEBB",
+        "Roles": [
+          {
+            "Ref": "RecommenderHandlerServiceRoleF222A799",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "RecommenderHandlerServiceRoleF222A799": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`RecommenderStack gamma matches snapshot 1`] = `
+{
+  "Outputs": {
+    "ApiUrl": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "RecommenderApi6AE88B5F",
+            },
+            ".execute-api.us-east-1.",
+            {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            {
+              "Ref": "RecommenderApiDeploymentStagegamma10F3483F",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "RecommenderApiEndpointBFDF23FC": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "RecommenderApi6AE88B5F",
+            },
+            ".execute-api.us-east-1.",
+            {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            {
+              "Ref": "RecommenderApiDeploymentStagegamma10F3483F",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+  },
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "RecommenderApi6AE88B5F": {
+      "Properties": {
+        "Name": "version-recommender-api-gamma",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "RecommenderApiAccount281FD15C": {
+      "DeletionPolicy": "Retain",
+      "DependsOn": [
+        "RecommenderApi6AE88B5F",
+      ],
+      "Properties": {
+        "CloudWatchRoleArn": {
+          "Fn::GetAtt": [
+            "RecommenderApiCloudWatchRole00A9A549",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "RecommenderApiCloudWatchRole00A9A549": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "RecommenderApiDeploymentB8B6B6F30dc674311224f4b77c053264fb611b5a": {
+      "DependsOn": [
+        "RecommenderApihealthGET23F671BD",
+        "RecommenderApihealth375F60B7",
+        "RecommenderApirecommendmodelNamePOST065BECC2",
+        "RecommenderApirecommendmodelName91952B36",
+        "RecommenderApirecommend32EF5AF5",
+      ],
+      "Metadata": {
+        "aws:cdk:do-not-refactor": true,
+      },
+      "Properties": {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "RecommenderApiDeploymentStagegamma10F3483F": {
+      "DependsOn": [
+        "RecommenderApiAccount281FD15C",
+      ],
+      "Properties": {
+        "DeploymentId": {
+          "Ref": "RecommenderApiDeploymentB8B6B6F30dc674311224f4b77c053264fb611b5a",
+        },
+        "MethodSettings": [
+          {
+            "DataTraceEnabled": false,
+            "HttpMethod": "*",
+            "ResourcePath": "/*",
+            "ThrottlingBurstLimit": 200,
+            "ThrottlingRateLimit": 100,
+          },
+        ],
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+        "StageName": "gamma",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "RecommenderApihealth375F60B7": {
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "RecommenderApi6AE88B5F",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "health",
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RecommenderApihealthGET23F671BD": {
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "GET",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "RecommenderHandler490413E9",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RecommenderApihealth375F60B7",
+        },
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RecommenderApihealthGETApiPermissionTestRecommenderStackgammaRecommenderApiFC680E0AGEThealthB05E9A88": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "RecommenderHandler490413E9",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:345678901234:",
+              {
+                "Ref": "RecommenderApi6AE88B5F",
+              },
+              "/",
+              {
+                "Ref": "RecommenderApiDeploymentStagegamma10F3483F",
+              },
+              "/GET/health",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RecommenderApihealthGETApiPermissionTestTestRecommenderStackgammaRecommenderApiFC680E0AGEThealthB8989053": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "RecommenderHandler490413E9",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:345678901234:",
+              {
+                "Ref": "RecommenderApi6AE88B5F",
+              },
+              "/test-invoke-stage/GET/health",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RecommenderApirecommend32EF5AF5": {
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "RecommenderApi6AE88B5F",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "recommend",
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RecommenderApirecommendmodelName91952B36": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "RecommenderApirecommend32EF5AF5",
+        },
+        "PathPart": "{modelName}",
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RecommenderApirecommendmodelNamePOST065BECC2": {
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "RecommenderHandler490413E9",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RecommenderApirecommendmodelName91952B36",
+        },
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RecommenderApirecommendmodelNamePOSTApiPermissionTestRecommenderStackgammaRecommenderApiFC680E0APOSTrecommendmodelName8AA22E65": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "RecommenderHandler490413E9",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:345678901234:",
+              {
+                "Ref": "RecommenderApi6AE88B5F",
+              },
+              "/",
+              {
+                "Ref": "RecommenderApiDeploymentStagegamma10F3483F",
+              },
+              "/POST/recommend/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RecommenderApirecommendmodelNamePOSTApiPermissionTestTestRecommenderStackgammaRecommenderApiFC680E0APOSTrecommendmodelName631604B8": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "RecommenderHandler490413E9",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:345678901234:",
+              {
+                "Ref": "RecommenderApi6AE88B5F",
+              },
+              "/test-invoke-stage/POST/recommend/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RecommenderHandler490413E9": {
+      "DependsOn": [
+        "RecommenderHandlerServiceRoleDefaultPolicyE85BFEBB",
+        "RecommenderHandlerServiceRoleF222A799",
+      ],
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-345678901234-us-east-1",
+          "S3Key": "f9a900503515a6345eac59b55cb054458b3e2cfacb15bbc4eedd6cee4f27153e.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "AMS_ENDPOINT_URL": "https://idco76hrk9.execute-api.us-east-1.amazonaws.com/gamma",
+            "CACHE_MAX_SIZE": "256",
+            "CACHE_TTL_SECONDS": "60",
+            "LAMBDA_PACKAGE_VERSION": "dev",
+            "LOG_LEVEL": "INFO",
+            "POWERTOOLS_SERVICE_NAME": "version-recommender",
+            "STAGE": "gamma",
+          },
+        },
+        "FunctionName": "version-recommender-handler-gamma",
+        "Handler": "handler.lambda_handler",
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "RecommenderHandlerServiceRoleF222A799",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.11",
+        "Timeout": 10,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "RecommenderHandlerServiceRoleDefaultPolicyE85BFEBB": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "RecommenderHandlerServiceRoleDefaultPolicyE85BFEBB",
+        "Roles": [
+          {
+            "Ref": "RecommenderHandlerServiceRoleF222A799",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "RecommenderHandlerServiceRoleF222A799": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`RecommenderStack prod matches snapshot 1`] = `
+{
+  "Outputs": {
+    "ApiUrl": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "RecommenderApi6AE88B5F",
+            },
+            ".execute-api.us-east-1.",
+            {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            {
+              "Ref": "RecommenderApiDeploymentStageprodFE4BC626",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+    "RecommenderApiEndpointBFDF23FC": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "RecommenderApi6AE88B5F",
+            },
+            ".execute-api.us-east-1.",
+            {
+              "Ref": "AWS::URLSuffix",
+            },
+            "/",
+            {
+              "Ref": "RecommenderApiDeploymentStageprodFE4BC626",
+            },
+            "/",
+          ],
+        ],
+      },
+    },
+  },
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "RecommenderApi6AE88B5F": {
+      "Properties": {
+        "Name": "version-recommender-api-prod",
+      },
+      "Type": "AWS::ApiGateway::RestApi",
+    },
+    "RecommenderApiAccount281FD15C": {
+      "DeletionPolicy": "Retain",
+      "DependsOn": [
+        "RecommenderApi6AE88B5F",
+      ],
+      "Properties": {
+        "CloudWatchRoleArn": {
+          "Fn::GetAtt": [
+            "RecommenderApiCloudWatchRole00A9A549",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::ApiGateway::Account",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "RecommenderApiCloudWatchRole00A9A549": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "apigateway.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "RecommenderApiDeploymentB8B6B6F32a0e42f37bd81ddf2bd5c35e7fcc9361": {
+      "DependsOn": [
+        "RecommenderApihealthGET23F671BD",
+        "RecommenderApihealth375F60B7",
+        "RecommenderApirecommendmodelNamePOST065BECC2",
+        "RecommenderApirecommendmodelName91952B36",
+        "RecommenderApirecommend32EF5AF5",
+      ],
+      "Metadata": {
+        "aws:cdk:do-not-refactor": true,
+      },
+      "Properties": {
+        "Description": "Automatically created by the RestApi construct",
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Deployment",
+    },
+    "RecommenderApiDeploymentStageprodFE4BC626": {
+      "DependsOn": [
+        "RecommenderApiAccount281FD15C",
+      ],
+      "Properties": {
+        "DeploymentId": {
+          "Ref": "RecommenderApiDeploymentB8B6B6F32a0e42f37bd81ddf2bd5c35e7fcc9361",
+        },
+        "MethodSettings": [
+          {
+            "DataTraceEnabled": false,
+            "HttpMethod": "*",
+            "ResourcePath": "/*",
+            "ThrottlingBurstLimit": 200,
+            "ThrottlingRateLimit": 100,
+          },
+        ],
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+        "StageName": "prod",
+      },
+      "Type": "AWS::ApiGateway::Stage",
+    },
+    "RecommenderApihealth375F60B7": {
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "RecommenderApi6AE88B5F",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "health",
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RecommenderApihealthGET23F671BD": {
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "GET",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "RecommenderHandler490413E9",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RecommenderApihealth375F60B7",
+        },
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RecommenderApihealthGETApiPermissionTestRecommenderStackprodRecommenderApi7FE0A72DGEThealth11639A20": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "RecommenderHandler490413E9",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:456789012345:",
+              {
+                "Ref": "RecommenderApi6AE88B5F",
+              },
+              "/",
+              {
+                "Ref": "RecommenderApiDeploymentStageprodFE4BC626",
+              },
+              "/GET/health",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RecommenderApihealthGETApiPermissionTestTestRecommenderStackprodRecommenderApi7FE0A72DGEThealth355D0E81": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "RecommenderHandler490413E9",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:456789012345:",
+              {
+                "Ref": "RecommenderApi6AE88B5F",
+              },
+              "/test-invoke-stage/GET/health",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RecommenderApirecommend32EF5AF5": {
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "RecommenderApi6AE88B5F",
+            "RootResourceId",
+          ],
+        },
+        "PathPart": "recommend",
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RecommenderApirecommendmodelName91952B36": {
+      "Properties": {
+        "ParentId": {
+          "Ref": "RecommenderApirecommend32EF5AF5",
+        },
+        "PathPart": "{modelName}",
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Resource",
+    },
+    "RecommenderApirecommendmodelNamePOST065BECC2": {
+      "Properties": {
+        "AuthorizationType": "AWS_IAM",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "RecommenderHandler490413E9",
+                    "Arn",
+                  ],
+                },
+                "/invocations",
+              ],
+            ],
+          },
+        },
+        "ResourceId": {
+          "Ref": "RecommenderApirecommendmodelName91952B36",
+        },
+        "RestApiId": {
+          "Ref": "RecommenderApi6AE88B5F",
+        },
+      },
+      "Type": "AWS::ApiGateway::Method",
+    },
+    "RecommenderApirecommendmodelNamePOSTApiPermissionTestRecommenderStackprodRecommenderApi7FE0A72DPOSTrecommendmodelName566697A8": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "RecommenderHandler490413E9",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:456789012345:",
+              {
+                "Ref": "RecommenderApi6AE88B5F",
+              },
+              "/",
+              {
+                "Ref": "RecommenderApiDeploymentStageprodFE4BC626",
+              },
+              "/POST/recommend/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RecommenderApirecommendmodelNamePOSTApiPermissionTestTestRecommenderStackprodRecommenderApi7FE0A72DPOSTrecommendmodelName4BCF6821": {
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "RecommenderHandler490413E9",
+            "Arn",
+          ],
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":execute-api:us-east-1:456789012345:",
+              {
+                "Ref": "RecommenderApi6AE88B5F",
+              },
+              "/test-invoke-stage/POST/recommend/*",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Permission",
+    },
+    "RecommenderHandler490413E9": {
+      "DependsOn": [
+        "RecommenderHandlerServiceRoleDefaultPolicyE85BFEBB",
+        "RecommenderHandlerServiceRoleF222A799",
+      ],
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-456789012345-us-east-1",
+          "S3Key": "f9a900503515a6345eac59b55cb054458b3e2cfacb15bbc4eedd6cee4f27153e.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "AMS_ENDPOINT_URL": "https://afwtpvnxe7.execute-api.us-east-1.amazonaws.com/prod",
+            "CACHE_MAX_SIZE": "256",
+            "CACHE_TTL_SECONDS": "60",
+            "LAMBDA_PACKAGE_VERSION": "dev",
+            "LOG_LEVEL": "INFO",
+            "POWERTOOLS_SERVICE_NAME": "version-recommender",
+            "STAGE": "prod",
+          },
+        },
+        "FunctionName": "version-recommender-handler-prod",
+        "Handler": "handler.lambda_handler",
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "RecommenderHandlerServiceRoleF222A799",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.11",
+        "Timeout": 10,
+        "TracingConfig": {
+          "Mode": "Active",
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "RecommenderHandlerServiceRoleDefaultPolicyE85BFEBB": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "RecommenderHandlerServiceRoleDefaultPolicyE85BFEBB",
+        "Roles": [
+          {
+            "Ref": "RecommenderHandlerServiceRoleF222A799",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "RecommenderHandlerServiceRoleF222A799": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;

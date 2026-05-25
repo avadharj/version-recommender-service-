@@ -1,0 +1,22 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff
+        name: ruff
+        entry: ruff check lambda/ tests/
+        language: system
+        pass_filenames: false
+        types: [python]
+
+      - id: mypy
+        name: mypy
+        entry: mypy lambda/ --strict
+        language: system
+        pass_filenames: false
+        types: [python]
+
+      - id: smithy-validate
+        name: smithy validate
+        entry: bash -c 'cd smithy-model && smithy build'
+        language: system
+        pass_filenames: false

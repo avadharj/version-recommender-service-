@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: pr-${{ github.head_ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ hashFiles('lambda/requirements-dev.txt') }}
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('infra-cdk/package-lock.json') }}
+
+      - name: Install Smithy CLI
+        run: |
+          mkdir -p ~/bin
+          curl -Lo /tmp/smithy.zip https://github.com/awslabs/smithy/releases/download/1.50.0/smithy-cli-linux-x86_64.zip
+          unzip -o /tmp/smithy.zip -d /tmp/smithy-cli
+          ln -sf /tmp/smithy-cli/smithy-cli-linux-x86_64/bin/smithy ~/bin/smithy
+          echo "$HOME/bin" >> "$GITHUB_PATH"
+
+      - name: Install Python dev dependencies
+        run: pip install -r lambda/requirements-dev.txt
+
+      - name: ruff
+        run: ruff check lambda/ tests/
+
+      - name: mypy
+        run: mypy lambda/ --strict
+
+      - name: pytest + coverage
+        run: pytest tests/ -v --cov=lambda --cov-fail-under=90 --cov-report=xml
+
+      - name: smithy validate
+        run: cd smithy-model && smithy build
+
+      - name: CDK npm ci + test
+        run: cd infra-cdk && npm ci && npm test
+
+      - name: build.sh smoke
+        run: ./scripts/build.sh
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage.xml

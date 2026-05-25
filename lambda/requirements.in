@@ -1,0 +1,4 @@
+requests
+requests-aws4auth
+boto3
+aws-embedded-metrics
