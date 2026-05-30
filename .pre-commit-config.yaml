@@ -17,6 +17,6 @@ repos:
 
       - id: smithy-validate
         name: smithy validate
-        entry: bash -c 'cd smithy-model && smithy build'
+        entry: smithy validate --config smithy-model/smithy-build.json smithy-model/model/
         language: system
         pass_filenames: false

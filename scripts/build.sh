@@ -4,6 +4,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 echo "==> [1/3] Building Smithy model (validate + generate OpenAPI)..."
+smithy validate --config "$ROOT/smithy-model/smithy-build.json" "$ROOT/smithy-model/model/"
 (cd "$ROOT/smithy-model" && smithy build)
 
 echo "==> [2/3] Validating Python dependencies (dry-run)..."
