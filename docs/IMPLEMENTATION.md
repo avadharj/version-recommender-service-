@@ -461,6 +461,13 @@ version-recommender/
 - Pre-commit hook blocks a commit that fails `ruff` or `smithy validate`.
 - `.gitignore` excludes `__pycache__/`, `*.pyc`, `cdk.out/`, `node_modules/`, `.venv/`.
 
+**Completed notes (2026-05-25):**
+- `lambda` is a Python keyword — `from lambda.models import ...` is a SyntaxError. All test imports use bare module names (`from models import ...`). `tests/conftest.py` does `sys.path.insert(0, .../lambda)` and `pyproject.toml` sets `pythonpath = ["lambda"]`. This pattern applies to ALL test files in the project.
+- CDK local bundler added to `recommender-stack.ts` so `cdk synth` works without Docker running. `BundlingOptions.local.tryBundle` runs `pip install` natively; returns `false` to fall back to Docker if pip unavailable.
+- CDK snapshot tests use an optional `lambdaCode?: lambda.Code` prop + `infra-cdk/test/fixtures/stub-handler.zip` to avoid Docker bundling in CI.
+- Smithy symlink at `~/bin/smithy` → `/tmp/smithy-cli-darwin-aarch64/bin/smithy`. The `/tmp` target is cleared by macOS between restarts. Reinstall: `curl -Lo /tmp/smithy.zip https://github.com/awslabs/smithy/releases/download/1.50.0/smithy-cli-darwin-aarch64.zip && unzip -o /tmp/smithy.zip -d /tmp/ && ln -sf /tmp/smithy-cli-darwin-aarch64/bin/smithy ~/bin/smithy`
+- `build.sh` uses `smithy validate --config smithy-model/smithy-build.json smithy-model/model/` (not `smithy build` or bare `smithy validate smithy-model/`).
+
 ---
 
 ## Story 1.2 — Smithy model: RecommendVersion operation [M]
@@ -483,6 +490,12 @@ version-recommender/
 - `HealthCheck` has `@readonly`.
 - `EnvSnapshot` marked `@sensitive`.
 - Negative test: `EnvSnapshot` missing `pythonVersion` fails Smithy lint at the operation `@required` level.
+
+**Completed notes (2026-05-25):**
+- `ThrottlingException` must be `@error("client")`, not `@error("server")`. The spec prose says "server" but Smithy rejects any `@error("server")` shape with a 4xx `@httpError` code. 429 is always a client error.
+- `ServiceError` mixin carries `@required requestId: String`. All five error structures use `with [ServiceError]`. Per-error extras: `NoCompatibleVersionException` adds `@required reason: String`; `ValidationException` adds optional `details: Document`; `ThrottlingException` adds optional `retryAfterSeconds: Integer`.
+- `smithy validate --config smithy-model/smithy-build.json smithy-model/model/` → 447 shapes, SUCCESS. API Gateway integration warnings ("No API Gateway integration trait found") are expected — wired in Story 6.2.
+- `ModelName` constraint: `@pattern("^[a-z0-9][a-z0-9-]{1,62}[a-z0-9]$") @length(min: 3, max: 64)`. `VersionId` constraint: `@pattern("^\\d+\\.\\d+$")`.
 
 ---
 
@@ -516,6 +529,12 @@ version-recommender/
 - Failure on any step fails the workflow (no `continue-on-error`).
 - Re-run on unchanged PR completes under 2 minutes from cache.
 - `ruff` and `mypy` run against `lambda/` and `tests/`.
+
+**Completed notes (2026-05-25):**
+- `smithy validate smithy-model/` does NOT work: picks up `build/` artifacts causing shape conflicts, and cannot resolve `aws.protocols#restJson1` without Maven deps. Correct invocation everywhere (CI, build.sh, pre-commit): `smithy validate --config smithy-model/smithy-build.json smithy-model/model/`
+- Smithy Maven deps cached at `~/.m2/repository/software/amazon/smithy` keyed on `smithy-build.json` hash; pre-populated before the validate step so the 2-minute re-run AC holds.
+- `mypy` runs against `lambda/ tests/ --strict` (both directories per AC).
+- No `continue-on-error` on any step. Step order: checkout/setup → caches → pip install → ruff → mypy → pytest → smithy validate → CDK test → build.sh → upload coverage.
 
 ---
 
@@ -587,6 +606,13 @@ class Recommendation:
 - Round-trip: `dataclasses.asdict(obj)` and back preserves all fields.
 - `Candidate.dep_snapshot.cuda_version` is `None`-safe.
 - Coverage ≥ 90% on `models.py`.
+
+**Completed notes (2026-05-25):**
+- Test imports use bare names (`from models import ...`) — see Story 1.1 notes on the `lambda` keyword problem.
+- `pyproject.toml` is the canonical config for the project: pytest `pythonpath`, coverage `source = ["lambda"]` + `fail_under = 90`, mypy `strict + mypy_path = "lambda"`, ruff `line-length = 100`. Do not add per-file tool config elsewhere.
+- Coverage measurement: run `pytest --cov` with no `--cov=` path argument. `pyproject.toml [tool.coverage.run]` sets the source. `--cov=lambda/models` is a syntax error; `--cov=lambda.models` silently measures nothing.
+- Total coverage is below 90% while stub files exist (0% each). Story-specific AC ("coverage ≥ 90% on models.py") is verified per-file. Total exceeds 90% once all substantive stories are implemented.
+- Result: 19/19 tests, `models.py` 100%.
 
 ---
 
@@ -690,6 +716,18 @@ class ScoreEngine:
 - `recommend` returns the highest-scoring non-disqualified candidate.
 - Tiebreaker: two candidates with equal score → newer `created_at` wins.
 - Coverage ≥ 90% on `scorer.py`.
+
+**Completed notes (2026-05-30):**
+- All imports in `scorer.py` and tests use bare module names (`from exceptions import ...`, `from models import ...`, `from scorer import ScoreEngine`).
+- `exceptions.py` was fully implemented as part of this story (required by scorer). Story 3.2 formally specifies the exception hierarchy but nothing further needs to be added there.
+- Exact scoring constants (deviating = automatic reviewer FAIL): Python 35/21/0; Framework 35/24.5/7/None; CUDA 20/18/10/8; OS 10/5.
+- `score_all` includes disqualified entries with `disqualified=True` for observability logging. `recommend` filters them. Disqualification reason string: `"framework_mismatch"`.
+- `recommend` raises `NoCompatibleVersionError(reason="model_empty")` for empty list; `reason="all_disqualified"` when all candidates are disqualified.
+- Tiebreaker key: `max(..., key=lambda s: (round(s.score, 2), _created_at_dt(s.candidate)))`. Parsing: `datetime.fromisoformat(ts.rstrip("Z") + "+00:00")`.
+- `_explanation` output format (deterministic): `"v{version} is the best match: exact Python 3.11, exact Pytorch 2.1, CPU environment, same OS (linux)"`. Framework name uses `.capitalize()`.
+- Spec example verified: v3.2=100.0, v2.1=89.5, v1.8=86.0, v4.0=67.0.
+- `scorer.py` has zero I/O imports — reviewer auto-fails on `requests`, `boto3`, `logging`, `cache`, or any `os.` calls.
+- Result: 51/51 tests, `scorer.py` 100%, `exceptions.py` 100%, total coverage 93.87%.
 
 ---
 
