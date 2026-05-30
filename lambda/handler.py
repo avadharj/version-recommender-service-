@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(os.environ.get("LOG_LEVEL", "INFO"))
 
 
-def lambda_handler(event: dict, context: object) -> dict:
+def lambda_handler(event: dict[str, object], context: object) -> dict[str, object]:
     """Placeholder — implemented in Story 5.1."""
     return {
         "statusCode": 501,

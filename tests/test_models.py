@@ -123,7 +123,7 @@ class TestDepSnapshot:
             framework=dep.framework,
             os=dep.os,
         )
-        assert type(dep) is not type(env)
+        assert type(dep) is not type(env)  # type: ignore[comparison-overlap]
 
 
 # ── Candidate ─────────────────────────────────────────────────────────────────
