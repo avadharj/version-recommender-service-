@@ -98,11 +98,11 @@ structure FrameworkInfo {
     version: String
 }
 
-// ─── Errors ───────────────────────────────────────────────────────────────────
+// ─── Error mixin ──────────────────────────────────────────────────────────────
 
-@error("client")
-@httpError(404)
-structure ModelNotFoundException {
+/// Shared envelope for all operation errors: code, message, requestId.
+@mixin
+structure ServiceError {
     @required
     code: String
 
@@ -113,61 +113,31 @@ structure ModelNotFoundException {
     requestId: String
 }
 
+// ─── Errors ───────────────────────────────────────────────────────────────────
+
+@error("client")
+@httpError(404)
+structure ModelNotFoundException with [ServiceError] {}
+
 @error("client")
 @httpError(422)
-structure NoCompatibleVersionException {
-    @required
-    code: String
-
-    @required
-    message: String
-
-    @required
-    requestId: String
-
+structure NoCompatibleVersionException with [ServiceError] {
     @required
     reason: String
 }
 
 @error("client")
 @httpError(400)
-structure ValidationException {
-    @required
-    code: String
-
-    @required
-    message: String
-
-    @required
-    requestId: String
-
+structure ValidationException with [ServiceError] {
     details: Document
 }
 
 @error("server")
 @httpError(500)
-structure InternalServerException {
-    @required
-    code: String
-
-    @required
-    message: String
-
-    @required
-    requestId: String
-}
+structure InternalServerException with [ServiceError] {}
 
 @error("client")
 @httpError(429)
-structure ThrottlingException {
-    @required
-    code: String
-
-    @required
-    message: String
-
-    @required
-    requestId: String
-
+structure ThrottlingException with [ServiceError] {
     retryAfterSeconds: Integer
 }
